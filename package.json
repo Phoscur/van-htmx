@@ -1,0 +1,35 @@
+{
+  "name": "htmx-van-playground",
+  "version": "1.0.0",
+  "description": "HTMX Van.JS Playground",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run build && node dist/server dev",
+    "tsc": "tsc",
+    "build": "tsc && esbuild dist/client.js --bundle --outfile=dist/client.bundle.js",
+    "minify": "terser dist/client.bundle.js --compress --toplevel --mangle --mangle-props regex=/^_.+/ -f wrap_func_args=false -o dist/client.bundle.min.js",
+    "build-prod": "npm run build && npm run minify && echo Run the following command to start the server: node dist/server prod [port]"
+  },
+  "keywords": [
+    "htmx",
+    "van"
+  ],
+  "author": "Phoscur",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/finalhandler": "^1.2.0",
+    "@types/node": "^20.5.7",
+    "@types/serve-static": "^1.15.2",
+    "esbuild": "^0.19.2",
+    "terser": "^5.19.2",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "finalhandler": "^1.2.0",
+    "mini-van-plate": "^0.5.3",
+    "serve-static": "^1.15.0",
+    "vanjs-core": "^1.2.7"
+  }
+  
+}
