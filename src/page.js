@@ -4,13 +4,13 @@ import Hello from "./components/hello.js"
 import Counter from "./components/counter.js"
 
 export default function page(query = {}) {
-  const { body, div, h1, h2, head, link, meta, option, p, script, select, title } = van.tags
+  const { body, button, div, h1, h2, head, link, meta, option, p, script, select, title } = van.tags
   const counterInit = Number(query["counter-init"]) || 0
 
   return van.html(
     head(
       link({rel: "icon", href: "logo.svg"}),
-      title("SSR and Hydration Example"),
+      title("Van SSR and HTMX Example"),
       meta({name: "viewport", content: "width=device-width, initial-scale=1"}),
     ),
     body(
@@ -35,6 +35,9 @@ export default function page(query = {}) {
         ),
         Counter({van, id: "styled-counter", init: counterInit, buttonStyle: "👆👇"}),
       ),
+      button({id: "htmx-button", "hx-get": "/htmx/123", "hx-target": "#htmx-container", "hx-swap": "beforeend"}, "HTMX Button"),
+      div({id: "htmx-container"}),   
+      script({type: "text/javascript", src: `htmx.js`}),
     )
   )
 }

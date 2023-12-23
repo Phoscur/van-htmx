@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/node_modules/htmx.org/dist'));
 app.use(express.static(__dirname + '/assets'));
 app.use(compression());
 
@@ -26,16 +27,8 @@ app.get('/', (req, res) => {
   res.send(page(req.query));
 });
 
-app.post('/like/:id', (req, res) => {
-  /*
-  const { id } = req.params;
-  const tweet = tweets.find(t => t.id === id);
-  tweet.likes += 1;
-  const likes  = pug.compileFile('views/components/likes.pug');
-  const markup = likes({ t: tweet });
-  res.send(markup);
-  */
-  res.send('hello');
+app.get('/htmx/:id', (req, res) => {
+  res.send('<h4>hello</h4>');
 });
 
 app.listen(PORT);
