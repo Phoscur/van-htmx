@@ -1,6 +1,6 @@
 /**
  * @typedef {Object} Props
- * @property {import("mini-van-plate/src/shared").VanObj} van
+ * @property {import("vanjs-core").Van} van
  */
 /**
  * @param {Props} props

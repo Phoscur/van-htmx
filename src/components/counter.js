@@ -1,6 +1,6 @@
 /**
  * @typedef {Object} CounterProps
- * @property {import("mini-van-plate/src/shared").VanObj} van
+ * @property {import("vanjs-core").Van} van
  * @property {String=} id
  * @property {Number=} init
  * @property {String | import("vanjs-core").State<String>=} buttonStyle
