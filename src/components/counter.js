@@ -1,15 +1,16 @@
-import { VanObj, State } from "mini-van-plate/shared"
-
-interface Props {
-  van: VanObj
-  id?: string
-  init?: number
-  buttonStyle?: string | State<string>
-}
-
+/**
+ * @typedef {Object} CounterProps
+ * @property {import("mini-van-plate/src/shared").VanObj} van
+ * @property {String=} id
+ * @property {Number=} init
+ * @property {String | import("vanjs-core").State<String>=} buttonStyle
+ */
+/**
+ * @param {CounterProps} props
+ */
 export default ({
   van, id, init = 0, buttonStyle = "👍👎",
-}: Props) => {
+}) => {
   const {button, div} = van.tags
 
   const [up, down] = [...van.val(buttonStyle)]

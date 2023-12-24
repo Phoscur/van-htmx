@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run build && node dist/server dev",
+    "dev-van": "npm run build && node dist/server dev",
+    "dev": "nodemon index.js",
     "tsc": "tsc",
     "build": "tsc && esbuild dist/client.js --bundle --outfile=dist/client.bundle.js",
     "minify": "terser dist/client.bundle.js --compress --toplevel --mangle --mangle-props regex=/^_.+/ -f wrap_func_args=false -o dist/client.bundle.min.js",
@@ -18,18 +19,19 @@
   "author": "Phoscur",
   "license": "ISC",
   "devDependencies": {
-    "@types/finalhandler": "^1.2.0",
     "@types/node": "^20.5.7",
-    "@types/serve-static": "^1.15.2",
     "esbuild": "^0.19.2",
     "terser": "^5.19.2",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "nodemon": "^3.0.2"
   },
   "dependencies": {
-    "finalhandler": "^1.2.0",
     "mini-van-plate": "^0.5.3",
-    "serve-static": "^1.15.0",
-    "vanjs-core": "^1.2.7"
+    "vanjs-core": "^1.2.7",
+    "body-parser": "^1.19.0",
+    "chance": "^1.1.7",
+    "compression": "^1.7.4",
+    "express": "^4.17.1"
   }
   
 }

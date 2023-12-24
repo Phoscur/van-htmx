@@ -2,10 +2,9 @@ import van from "vanjs-core"
 import Hello from "./components/hello.js"
 import Counter from "./components/counter.js"
 
-const {button, p} = van.tags
+const { button, p } = van.tags
 
 van.add(document.getElementById("hello-container")!, Hello({van}))
-
 
 const hydrate = () => {
   van.hydrate(document.getElementById("basic-counter")!, dom => Counter({

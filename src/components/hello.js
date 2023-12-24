@@ -1,10 +1,11 @@
-import { VanObj } from "mini-van-plate/shared"
-
-interface Props {
-  van: VanObj
-}
-
-export default ({van} : Props) => {
+/**
+ * @typedef {Object} Props
+ * @property {import("mini-van-plate/src/shared").VanObj} van
+ */
+/**
+ * @param {Props} props
+ */
+export default ({ van }) => {
   const {a, div, li, p, ul} = van.tags
 
   const fromServer = typeof window === "undefined"
