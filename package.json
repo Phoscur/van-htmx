@@ -5,12 +5,11 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-van": "npm run build && node dist/server dev",
     "dev": "nodemon index.js",
     "tsc": "tsc",
     "build": "tsc && esbuild dist/client.js --bundle --outfile=dist/client.bundle.js",
     "minify": "terser dist/client.bundle.js --compress --toplevel --mangle --mangle-props regex=/^_.+/ -f wrap_func_args=false -o dist/client.bundle.min.js",
-    "build-prod": "npm run build && npm run minify && echo Run the following command to start the server: node dist/server prod [port]"
+    "build-prod": "npm run build && npm run minify"
   },
   "keywords": [
     "htmx",
@@ -19,17 +18,17 @@
   "author": "Phoscur",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.5.7",
-    "esbuild": "^0.19.2",
+    "@types/node": "^20.10.5",
+    "esbuild": "^0.19.10",
     "nodemon": "^3.0.2",
-    "terser": "^5.19.2",
-    "typescript": "^5.0.4"
+    "terser": "^5.26.0",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "chance": "^1.1.7",
+    "body-parser": "^1.20.2",
+    "chance": "^1.1.11",
     "compression": "^1.7.4",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "htmx.org": "^1.9.10",
     "mini-van-plate": "^0.5.3",
     "vanjs-core": "^1.2.7"
