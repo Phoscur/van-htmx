@@ -2,8 +2,8 @@ import van from 'mini-van-plate/van-plate'
 import javascriptLogo from './javascript.svg'
 import page from './page'
 
-export function render() {
-  const content = page({ van })
+export function render({ query }) {
+  const content = page({ van, query })
   const html = `
     ${van.html(content)}
     <div>

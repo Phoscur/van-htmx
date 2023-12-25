@@ -5,16 +5,11 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node server",
+    "dev": "nodemon server",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
-    "preview": "cross-env NODE_ENV=production node server",
-    "tsc": "tsc",
-    "dev-plain": "nodemon index.js",
-    "build-client": "tsc && esbuild dist/client.js --bundle --outfile=dist/client.bundle.js",
-    "minify-client": "terser dist/client.bundle.js --compress --toplevel --mangle --mangle-props regex=/^_.+/ -f wrap_func_args=false -o dist/client.bundle.min.js",
-    "build-prod-client": "npm run build && npm run minify"
+    "preview": "cross-env NODE_ENV=production node server"
   },
   "keywords": [
     "htmx",
@@ -25,10 +20,7 @@
   "devDependencies": {
     "@types/node": "^20.10.5",
     "cross-env": "^7.0.3",
-    "esbuild": "^0.19.10",
     "nodemon": "^3.0.2",
-    "terser": "^5.26.0",
-    "typescript": "^5.3.3",
     "vite": "^5.0.10"
   },
   "dependencies": {

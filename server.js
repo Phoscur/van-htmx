@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises'
 import express from 'express'
+import bodyParser from 'body-parser';
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -16,6 +17,9 @@ const ssrManifest = isProduction
 
 // Create http server
 const app = express()
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Add Vite or respective production middlewares
 let vite
@@ -34,6 +38,8 @@ if (!isProduction) {
   app.use(base, sirv('./dist/client', { extensions: [] }))
 }
 
+app.get('/htmx/:id', (req, res) => {res.send('<h4>hello</h4>');});
+
 // Serve HTML
 app.use('*', async (req, res) => {
   try {
@@ -51,7 +57,7 @@ app.use('*', async (req, res) => {
       render = (await import('./dist/server/entry-server.js')).render
     }
 
-    const rendered = await render(url, ssrManifest)
+    const rendered = await render(req, url, ssrManifest)
 
     const html = template
       .replace(`<!--app-head-->`, rendered.head ?? '')

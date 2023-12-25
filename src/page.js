@@ -14,6 +14,7 @@ import Counter from "./components/counter.js"
 export default function page({ van, query = {}}) {
   const { body, button, div, h1, h2, head, link, meta, option, p, script, select, title } = van.tags
   const counterInit = Number(query["counter-init"]) || 0
+  console.log('query', query)
 
   return [
     h1("Hello Components"),
