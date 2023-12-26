@@ -1,7 +1,7 @@
 import "./style.css"
 import "./javascript.svg"
 
-import "htmx.org"
+import htmx from "htmx.org"
 import van from "vanjs-core"
 import Hello from "./components/hello.js"
 import Counter from "./components/counter.js"
@@ -11,7 +11,10 @@ const { button, p } = van.tags
 van.add(document.getElementById("hello-container"), Hello({van}))
 
 const hydrate = () => {
-  van.hydrate(document.getElementById("basic-counter"), dom => Counter({
+  const el = document.getElementById("basic-counter");
+  if (!el) return;
+
+  van.hydrate(el, dom => Counter({
     van,
     id: dom.id,
     init: Number(dom.getAttribute("data-counter")),
@@ -29,4 +32,6 @@ const hydrate = () => {
   }))
 }
 
-van.add(document.getElementById("counter-container"), p(button({onclick: hydrate}, "Hydrate")))
+htmx.onLoad(hydrate);
+// manually trigger hydration
+// van.add(document.getElementById("counter-container"), p(button({onclick: hydrate}, "Hydrate")))

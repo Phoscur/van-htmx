@@ -22,9 +22,10 @@ export default function page({ van, query = {}}) {
     ),
     h2("Components"),
     div({id: "counter-container"},
-      Counters({van, query}),
+      button({id: "counters-button", "hx-get": "/htmx/counters", "hx-swap": "outerHTML"}, "HTMX Load Button"),
     ),
-    button({id: "htmx-button", "hx-get": "/htmx/123", "hx-target": "#htmx-container", "hx-swap": "beforeend"}, "HTMX Button"),
-    div({id: "htmx-container"}),
+    // moar htmx buttons!11
+    // button({id: "htmx-button", "hx-get": "/htmx/123", "hx-target": "#htmx-container", "hx-swap": "beforeend"}, "HTMX Hello Button"),
+    // div({id: "htmx-container"}),
   ]
 }
