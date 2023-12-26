@@ -1,6 +1,6 @@
-import javascriptLogo from './javascript.svg'
-import vanLogo from './vanjs.svg'
-import page from './page'
+import javascriptLogo from "./javascript.svg"
+import vanLogo from "./vanjs.svg"
+import page from "./page"
 
 export function render(van, { query }) {
   const content = page({ van, query })

@@ -1,7 +1,7 @@
-import './style.css'
-import './javascript.svg'
+import "./style.css"
+import "./javascript.svg"
 
-import 'htmx.org'
+import "htmx.org"
 import van from "vanjs-core"
 import Hello from "./components/hello.js"
 import Counter from "./components/counter.js"
