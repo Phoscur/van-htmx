@@ -1,10 +1,7 @@
 import './style.css'
 import './javascript.svg'
+
 import 'htmx.org'
-import { setupCounter } from './counter'
-
-setupCounter(document.querySelector('#counter'))
-
 import van from "vanjs-core"
 import Hello from "./components/hello.js"
 import Counter from "./components/counter.js"
