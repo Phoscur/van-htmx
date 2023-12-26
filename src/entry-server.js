@@ -1,12 +1,10 @@
-import van from 'mini-van-plate/van-plate'
 import javascriptLogo from './javascript.svg'
 import vanLogo from './vanjs.svg'
 import page from './page'
 
-export function render({ query }) {
+export function render(van, { query }) {
   const content = page({ van, query })
   const html = `
-    ${van.html(content)}
     <div>
       <a href="https://vanjs.org" target="_blank">
         <img src="${vanLogo}" class="logo" alt="VanJS logo" />
@@ -17,7 +15,7 @@ export function render({ query }) {
         <img src="/vite.svg" class="logo" alt="Vite logo" />
       </a>
     </div>
-      <p class="read-the-docs">
+    ${van.html(content)}
   `
   return { html }
 }

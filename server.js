@@ -1,6 +1,9 @@
 import fs from 'node:fs/promises'
 import express from 'express'
 import bodyParser from 'body-parser';
+import van from 'mini-van-plate/van-plate'
+
+import Counters from "./src/counters.js"
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -38,6 +41,7 @@ if (!isProduction) {
   app.use(base, sirv('./dist/client', { extensions: [] }))
 }
 
+app.get('/htmx/counters', ({ query }, res) => {res.send(van.html(Counters({ van, query })));});
 app.get('/htmx/:id', (req, res) => {res.send('<h4>hello</h4>');});
 
 // Serve HTML
@@ -57,7 +61,7 @@ app.use('*', async (req, res) => {
       render = (await import('./dist/server/entry-server.js')).render
     }
 
-    const rendered = await render(req, url, ssrManifest)
+    const rendered = await render(van, req, url, ssrManifest)
 
     const html = template
       .replace(`<!--app-head-->`, rendered.head ?? '')
