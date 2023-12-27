@@ -1,12 +1,11 @@
 import "./style.css"
 import "./javascript.svg"
 
-import htmx from "htmx.org"
+import htmx from "./htmx"
+import "htmx.org/dist/ext/ws"
 import van from "vanjs-core"
 import Hello from "./components/hello.js"
 import Counter from "./components/counter.js"
-
-const { button, p } = van.tags
 
 van.add(document.getElementById("hello-container"), Hello({van}))
 

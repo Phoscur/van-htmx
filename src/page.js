@@ -1,5 +1,4 @@
 import Hello from "./components/hello.js"
-import Counters from "./counters.js"
 
 /**
  * @typedef {Object} PageProps
@@ -12,7 +11,7 @@ import Counters from "./counters.js"
  * @returns {HTMLElement[]}
  */
 export default function page({ van, query = {}}) {
-  const { body, button, div, h1, h2, head, link, meta, option, p, script, select, title } = van.tags
+  const { button, div, h1, h2, form, input } = van.tags
   console.log('query', query)
 
   return [
@@ -27,5 +26,12 @@ export default function page({ van, query = {}}) {
     // moar htmx buttons!11
     // button({id: "htmx-button", "hx-get": "/htmx/123", "hx-target": "#htmx-container", "hx-swap": "beforeend"}, "HTMX Hello Button"),
     // div({id: "htmx-container"}),
+    div({"hx-ext": "ws", "ws-connect": "/ws"},
+      div({id: "notifications"}),
+      div({id: "chat_room"}),
+      form({id: "form", "ws-send": true}, 
+        input({name: "chat_message"})
+      ),
+    ),
   ]
 }

@@ -1,5 +1,6 @@
 import fs from "node:fs/promises"
 import express from "express"
+import expressWs from "express-ws"
 import bodyParser from "body-parser";
 import van from "mini-van-plate/van-plate"
 
@@ -20,6 +21,7 @@ const ssrManifest = isProduction
 
 // Create http server
 const app = express()
+expressWs(app);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,11 +43,32 @@ if (!isProduction) {
   app.use(base, sirv("./dist/client", { extensions: [] }))
 }
 
-app.get("/htmx/counters", ({ query }, res) => {res.send(van.html(Counters({ van, query })));});
-app.get("/htmx/:id", (req, res) => {res.send("<h4>hello</h4>");});
+app.get("/htmx/counters", ({ query }, res) => {res.send(van.html(Counters({ van, query })))})
+app.get("/htmx/:id", (req, res) => {res.send("<h4>hello</h4>")})
+
+app.ws("/ws", (ws, req) => {
+  ws.on("message", (data) => {
+    const msg = JSON.parse(data)
+    const response = `
+    <!-- will be interpreted as hx-swap-oob="true" by default -->
+    <form id="form" ws-send>
+        <input name="chat_message" value="${msg.chat_message}">
+    </form>
+    <!-- will be appended to #notifications div -->
+    <div id="notifications" hx-swap-oob="beforeend">
+        New message received
+    </div>
+    <!-- will be swapped using an extension -->
+    <div id="chat_room" hx-swap-oob="morphdom">
+        ${msg.chat_message}
+    </div>`
+    ws.send(response)
+  });
+  console.log("socket", req.url);
+})
 
 // Serve HTML
-app.use("*", async (req, res) => {
+app.get("/", async (req, res) => {
   try {
     const url = req.originalUrl.replace(base, "")
 
