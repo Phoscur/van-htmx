@@ -1,4 +1,4 @@
-import Counter from "./components/counter.js"
+import Counter from "./components/counter"
 
 /**
  * @typedef {Object} Props

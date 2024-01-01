@@ -1,17 +1,16 @@
-/**
- * @typedef {Object} OptimizedCounterProps
- * @property {import("vanjs-core").Van} van
- * @property {String=} id
- * @property {Number=} init
- * @property {String | import("vanjs-core").State<String>=} buttonStyle
- */
-/**
- * @param {OptimizedCounterProps} props
- */
+import type { VanObj, State } from "mini-van-plate/shared"
+
+interface Props {
+  van: VanObj
+  id?: string
+  init?: number
+  buttonStyle?: string | State<string>
+}
+
 export default ({
   van, id, init = 0, buttonStyle = "👍👎",
-}) => {
-  const { button, div } = van.tags
+}: Props) => {
+  const {button, div} = van.tags
 
   const counter = van.state(init)
   return div({...(id ? {id} : {}), "data-counter": counter},

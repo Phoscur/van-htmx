@@ -1,18 +1,14 @@
-import Hello from "./components/hello.js"
+import type { VanObj, State } from "mini-van-plate/shared"
+import Hello from "./components/hello"
+interface Props {
+  van: VanObj
+  id?: string
+  init?: number
+  buttonStyle?: string | State<string>
+}
 
-/**
- * @typedef {Object} PageProps
- * @property {import("vanjs-core").Van} van
- * @property {String=} id
- * @property {Record<String, String>=} query
- */
-/**
- * @param {PageProps} props
- * @returns {HTMLElement[]}
- */
-export default function page({ van, query = {}}) {
+export default function page({ van }: Props) {
   const { button, div, h1, h2, form, input } = van.tags
-  console.log('query', query)
 
   return [
     h1("Vite Van HTMX"),

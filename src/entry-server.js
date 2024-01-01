@@ -1,9 +1,10 @@
+import App from "./app"
+
 import javascriptLogo from "./javascript.svg"
 import vanLogo from "./vanjs.svg"
-import page from "./page"
 
 export function render(van, { query }) {
-  const content = page({ van, query })
+  const content = App({ van, query })
   const html = `
     <div>
       <a href="https://vanjs.org" target="_blank">

@@ -64,7 +64,7 @@ app.ws("/ws", (ws, req) => {
     </div>`
     ws.send(response)
   });
-  console.log("socket", req.url);
+  console.log("Socket established on", req.url);
 })
 
 // Serve HTML
@@ -98,6 +98,7 @@ app.get("/", async (req, res) => {
   }
 })
 
+console.log('Starting', isProduction ? 'production' : 'development', 'server...')
 // Start http server
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`)

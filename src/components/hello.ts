@@ -1,11 +1,10 @@
-/**
- * @typedef {Object} Props
- * @property {import("vanjs-core").Van} van
- */
-/**
- * @param {Props} props
- */
-export default ({ van }) => {
+import type { VanObj } from "mini-van-plate/shared"
+
+interface Props {
+  van: VanObj
+}
+
+export default ({van} : Props) => {
   const {a, b, div, li, p, ul} = van.tags
 
   const fromServer = typeof window === "undefined"
