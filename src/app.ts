@@ -11,7 +11,7 @@ export default function page({ van }: Props) {
   const { button, div, h1, h2, form, input } = van.tags
 
   return [
-    h1("Vite Van HTMX"),
+    h1({ class: "font-bold leading-6 text-lg" }, "Vite Van HTMX"),
     div({id: "hello-container"},
       Hello({van}),
     ),

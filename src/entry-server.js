@@ -6,14 +6,14 @@ import vanLogo from "./vanjs.svg"
 export function render(van, { query }) {
   const content = App({ van, query })
   const html = `
-    <div>
+    <div class="h-32 mb-8 mx-auto grid grid-flow-col gap-8 auto-cols-max">
       <a href="https://vanjs.org" target="_blank">
-        <img src="${vanLogo}" class="logo" alt="VanJS logo" />
+        <img src="${vanLogo}" class="w-32 logo" alt="VanJS logo" />
       <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-        <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
+        <img src="${javascriptLogo}" class="w-32 logo vanilla" alt="JavaScript logo" />
       </a>
       <a href="https://vitejs.dev" target="_blank">
-        <img src="/vite.svg" class="logo" alt="Vite logo" />
+        <img src="/vite.svg" class="w-32 logo" alt="Vite logo" />
       </a>
     </div>
     ${van.html(content)}
