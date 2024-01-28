@@ -1,4 +1,4 @@
-import Counter from "./components/counter"
+import Counter from "./components/counter";
 
 /**
  * @typedef {Object} Props
@@ -9,15 +9,17 @@ import Counter from "./components/counter"
  * @param {Props} props
  */
 export default ({ van, query }) => {
-  const counterInit = Number(query["counter-init"]) || 0
+  const counterInit = Number(query["counter-init"]) || 0;
 
-  const { h2, p, select, option } = van.tags
+  const { h2, p, select, option } = van.tags;
   return [
     h2("Basic Counter"),
-    Counter({van, id: "basic-counter", init: counterInit}),
+    Counter({ van, id: "basic-counter", init: counterInit }),
     h2("Styled Counter"),
-    p("Select the button style: ",
-      select({id: "button-style", value: "👆👇"},
+    p(
+      "Select the button style: ",
+      select(
+        { id: "button-style", value: "👆👇" },
         option("👆👇"),
         option("👍👎"),
         option("🔼🔽"),
@@ -25,6 +27,11 @@ export default ({ van, query }) => {
         option("📈📉"),
       ),
     ),
-    Counter({van, id: "styled-counter", init: counterInit, buttonStyle: "👆👇"}),
-  ]
-}
+    Counter({
+      van,
+      id: "styled-counter",
+      init: counterInit,
+      buttonStyle: "👆👇",
+    }),
+  ];
+};

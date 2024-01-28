@@ -15,6 +15,7 @@ npm run preview
 ```
 
 TODO
+
 - Lint & format
 - Tests
 - Fix/improve nodemon+vite, use vite as proxy (so it restarts separately from the server)?

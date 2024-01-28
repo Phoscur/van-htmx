@@ -1,11 +1,11 @@
-import App from "./app"
+import App from "./app";
 
-import javascriptLogo from "./javascript.svg"
-import vanLogo from "./vanjs.svg"
-import tailwindLogo from "./tailwind.svg"
+import javascriptLogo from "./javascript.svg";
+import vanLogo from "./vanjs.svg";
+import tailwindLogo from "./tailwind.svg";
 
 export function render(van, { query }) {
-  const content = App({ van, query })
+  const content = App({ van, query });
   const html = `
     <div class="h-32 mb-8 mx-auto grid grid-flow-col gap-8 auto-cols-max">
       <a href="https://vanjs.org" target="_blank">
@@ -22,6 +22,6 @@ export function render(van, { query }) {
       </a>
     </div>
     ${van.html(content)}
-  `
-  return { html }
+  `;
+  return { html };
 }
