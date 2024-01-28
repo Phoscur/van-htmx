@@ -2,6 +2,7 @@ import App from "./app"
 
 import javascriptLogo from "./javascript.svg"
 import vanLogo from "./vanjs.svg"
+import tailwindLogo from "./tailwind.svg"
 
 export function render(van, { query }) {
   const content = App({ van, query })
@@ -11,6 +12,10 @@ export function render(van, { query }) {
         <img src="${vanLogo}" class="w-32 logo" alt="VanJS logo" />
       <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
         <img src="${javascriptLogo}" class="w-32 logo vanilla" alt="JavaScript logo" />
+      </a>
+      <a href="https://tailwindcss.com" target="_blank">
+        <img src="${tailwindLogo}" class="w-32 logo" alt="Tailwind logo" />
+      </a>
       </a>
       <a href="https://vitejs.dev" target="_blank">
         <img src="/vite.svg" class="w-32 logo" alt="Vite logo" />
