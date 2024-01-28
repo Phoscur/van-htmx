@@ -4,7 +4,8 @@ import expressWs from "express-ws"
 import bodyParser from "body-parser";
 import van from "mini-van-plate/van-plate"
 
-import Counters from "./src/counters.js"
+import Counters from "./src/counters"
+import { setupChat } from "./src/chat"
 
 // Constants
 const isProduction = process.env.NODE_ENV === "production"
@@ -46,26 +47,7 @@ if (!isProduction) {
 app.get("/htmx/counters", ({ query }, res) => {res.send(van.html(Counters({ van, query })))})
 app.get("/htmx/:id", (req, res) => {res.send("<h4>hello</h4>")})
 
-app.ws("/ws", (ws, req) => {
-  ws.on("message", (data) => {
-    const msg = JSON.parse(data)
-    const response = `
-    <!-- will be interpreted as hx-swap-oob="true" by default -->
-    <form id="form" ws-send>
-        <input name="chat_message" value="${msg.chat_message}">
-    </form>
-    <!-- will be appended to #notifications div -->
-    <div id="notifications" hx-swap-oob="beforeend">
-        New message received
-    </div>
-    <!-- will be swapped using an extension -->
-    <div id="chat_room" hx-swap-oob="morphdom">
-        ${msg.chat_message}
-    </div>`
-    ws.send(response)
-  });
-  console.log("Socket established on", req.url);
-})
+setupChat(app, van)
 
 // Serve HTML
 app.get("/", async (req, res) => {

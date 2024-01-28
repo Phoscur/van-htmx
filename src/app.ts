@@ -1,5 +1,7 @@
 import type { VanObj, State } from "mini-van-plate/shared"
 import Hello from "./components/hello"
+import { renderChat } from "./chat"
+
 interface Props {
   van: VanObj
   id?: string
@@ -8,7 +10,7 @@ interface Props {
 }
 
 export default function page({ van }: Props) {
-  const { button, div, h1, h2, form, input } = van.tags
+  const { button, div, h1, h2 } = van.tags
 
   return [
     h1({ class: "font-bold leading-6 text-lg" }, "Vite Van HTMX"),
@@ -22,12 +24,6 @@ export default function page({ van }: Props) {
     // moar htmx buttons!11
     // button({id: "htmx-button", "hx-get": "/htmx/123", "hx-target": "#htmx-container", "hx-swap": "beforeend"}, "HTMX Hello Button"),
     // div({id: "htmx-container"}),
-    div({"hx-ext": "ws", "ws-connect": "/ws"},
-      div({id: "notifications"}),
-      div({id: "chat_room"}),
-      form({id: "form", "ws-send": true}, 
-        input({name: "chat_message"})
-      ),
-    ),
+    ...renderChat(),
   ]
 }
