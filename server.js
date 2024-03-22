@@ -1,4 +1,6 @@
 import fs from "node:fs/promises";
+import { serve } from '@hono/node-server'
+import { Hono } from 'hono'
 import express from "express";
 import expressWs from "express-ws";
 import bodyParser from "body-parser";
@@ -21,11 +23,11 @@ const ssrManifest = isProduction
   : undefined;
 
 // Create http server
-const app = express();
-expressWs(app);
+const app = new Hono();
+// expressWs(app);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
 
 // Add Vite or respective production middlewares
 let vite;
@@ -51,7 +53,7 @@ app.get("/htmx/:id", (req, res) => {
   res.send("<h4>hello</h4>");
 });
 
-setupChat(app, van);
+// setupChat(app, van);
 
 // Serve HTML
 app.get("/", async (req, res) => {
@@ -90,6 +92,9 @@ console.log(
   "server...",
 );
 // Start http server
-app.listen(port, () => {
+serve({
+  fetch: app.fetch,
+  port
+}, () => {
   console.log(`Server started at http://localhost:${port}`);
 });

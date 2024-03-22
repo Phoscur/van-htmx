@@ -2,7 +2,7 @@ import "./index.css";
 import "./javascript.svg";
 
 import htmx from "./htmx";
-import "htmx.org/dist/ext/ws";
+//import "htmx.org/dist/ext/ws";
 import van from "vanjs-core";
 import Hello from "./components/hello";
 import Counter from "./components/counter";
