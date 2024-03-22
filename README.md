@@ -17,9 +17,10 @@ npm run preview
 
 ### TODO
 
-- Lint?
-- Tests?!
+- eslint
+- e2e tests
 
-- remove server.js?!
-- 
+- remove server.js?! 
+- add hono/jsx example
 - what about htmx/ws, reenable!?
+- tailwind v4?
