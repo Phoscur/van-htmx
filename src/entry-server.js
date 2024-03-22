@@ -16,6 +16,8 @@ export function render(van, { query }) {
       <a href="https://tailwindcss.com" target="_blank">
         <img src="${tailwindLogo}" class="w-32 logo" alt="Tailwind logo" />
       </a>
+      <a href="https://hono.dev" target="_blank">
+        <img src="/hono.png" class="w-32 logo" alt="Hono logo" />
       </a>
       <a href="https://vitejs.dev" target="_blank">
         <img src="/vite.svg" class="w-32 logo" alt="Vite logo" />
