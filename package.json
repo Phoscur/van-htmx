@@ -4,12 +4,14 @@
   "description": "HTMX Van.JS Playground",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "tsc": "tsc",
-    "build": "tsc && esbuild dist/client.js --bundle --outfile=dist/client.bundle.js",
-    "minify": "terser dist/client.bundle.js --compress --toplevel --mangle --mangle-props regex=/^_.+/ -f wrap_func_args=false -o dist/client.bundle.min.js",
-    "build-prod": "npm run build && npm run minify"
+    "start": "vite",
+    "test": "vitest",
+    "prettier": "prettier . --write",
+    "dev": "tsx watch --ignore dist server",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --ssrManifest --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
+    "preview": "cross-env NODE_ENV=production node server"
   },
   "keywords": [
     "htmx",
@@ -18,19 +20,28 @@
   "author": "Phoscur",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.10.5",
-    "esbuild": "^0.19.10",
-    "nodemon": "^3.0.2",
-    "terser": "^5.26.0",
-    "typescript": "^5.3.3"
+    "@hono/vite-dev-server": "^0.4.1",
+    "@types/chance": "^1.1.6",
+    "@types/node": "^20.11.10",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.32",
+    "prettier": "3.2.1",
+    "tailwindcss": "^3.4.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vitest": "^1.1.1"
   },
   "dependencies": {
-    "body-parser": "^1.20.2",
+    "@hono/node-server": "^1.5.0",
     "chance": "^1.1.11",
     "compression": "^1.7.4",
-    "express": "^4.18.2",
+    "hono": "^3.12.8",
     "htmx.org": "^1.9.10",
     "mini-van-plate": "^0.5.3",
+    "sirv": "^2.0.4",
     "vanjs-core": "^1.2.7"
   }
 }
